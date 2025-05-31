@@ -1,0 +1,70 @@
+## Compilação
+bin/
+obj/
+out/
+
+## Logs
+*.log
+
+## Usuário
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Configurações locais
+.vs/
+.idea/
+*.swp
+*.dbmdl
+
+## Build do Rider e JetBrains
+*.DotSettings.user
+
+## Mac
+.DS_Store
+
+## Linux
+*~
+
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+## Arquivos temporários
+~$*
+*.tmp
+
+## Pacotes
+*.nupkg
+packages/
+*.snupkg
+
+## Teste e publicação
+TestResults/
+*.publish/
+
+## Configurações do Visual Studio Code
+.vscode/
+
+## Dependências do NuGet
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Arquivos gerados por backup do Visual Studio
+*.Backup
+
+## Outros
+*.tgz
+*.tar.gz
+*.zip
+
+## GitHub
+.github/
+
+## Arquivos secretos (se usar, cuide disso!)
+secrets.json
+appsettings.Development.json
+appsettings.Local.json

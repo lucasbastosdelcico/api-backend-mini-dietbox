@@ -1,0 +1,6 @@
+@MiniDietboxAPI_HostAddress = http://localhost:5169
+
+GET {{MiniDietboxAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
