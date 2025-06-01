@@ -1,9 +1,17 @@
-﻿using MiniDietboxAPI.Domain.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using MiniDietboxAPI.Domain.Abstractions.Interfaces;
 
-namespace MiniDietboxAPI.Domain.Repository
+namespace MiniDietboxAPI.Domain.Repository.Generics
 {
     public class Repository<T> : IRepository<T> where T : class
     {
+        private DbContext context;
+
+        public Repository(DbContext context)
+        {
+            this.context = context;
+        }
+
         public Task AddAsync(T entity)
         {
             throw new NotImplementedException();

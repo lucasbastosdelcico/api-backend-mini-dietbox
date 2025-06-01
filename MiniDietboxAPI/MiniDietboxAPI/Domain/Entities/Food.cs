@@ -1,9 +1,18 @@
-﻿namespace MiniDietboxAPI.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MiniDietboxAPI.Domain.Entities
 {
-    public class Food
+    [Table("Food")]
+    public class Food : Generics.Generics
     {
-        public int Id { get; set; }
+        [Required]
+        [StringLength(50)]
         public string? Name { get; set; }
+        [Required]
+        public float Gramas { get; set; }
+        [Required]
+        public float  Calorias  { get; set; }
 
     }
 }

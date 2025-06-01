@@ -9,8 +9,8 @@ namespace MiniDietboxAPI.Domain.AppDbContext
         {
         }
 
-        public DbSet<Patient> Patients { get; set; }
-        public DbSet<Food> Foods { get; set; }
-        public DbSet<Mealplan> Mealplans { get; set; }
+        public DbSet<Patient>? Patients { get; set; }
+        public DbSet<Food>? Foods { get; set; }
+        public DbSet<Mealplan>? Mealplans { get; set; }
     }
 }

@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using MiniDietboxAPI.Domain.Abstractions.Interfaces;
+using MiniDietboxAPI.Domain.Abstractions.IService;
 using MiniDietboxAPI.Domain.AppDbContext;
+using MiniDietboxAPI.Domain.Repository;
+using MiniDietboxAPI.Domain.Services;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +23,15 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<AppDbConext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddScoped<IMealplansRepository, MealplansRepository>();
+builder.Services.AddScoped<IMealplanService, MealplanService>();
+
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+builder.Services.AddScoped<IPatientService, PatientService>();
+
+builder.Services.AddScoped<IFoodRepository, FoodRepository>();
+builder.Services.AddScoped<IFoodService, FoodService>();
 
 
 var app = builder.Build();
