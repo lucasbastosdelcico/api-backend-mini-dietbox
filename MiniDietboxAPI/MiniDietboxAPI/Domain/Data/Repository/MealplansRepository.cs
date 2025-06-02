@@ -12,7 +12,5 @@ namespace MiniDietboxAPI.Domain.Data.Repository
         {
             _context = context;
         }
-
-
     }
 }
