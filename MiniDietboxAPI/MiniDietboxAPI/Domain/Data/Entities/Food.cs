@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MiniDietboxAPI.Domain.Entities
+namespace MiniDietboxAPI.Domain.Data.Entities
 {
     [Table("Food")]
     public class Food : Generics.Generics
@@ -12,7 +12,7 @@ namespace MiniDietboxAPI.Domain.Entities
         [Required]
         public float Gramas { get; set; }
         [Required]
-        public float  Calorias  { get; set; }
+        public float Calorias { get; set; }
 
     }
 }

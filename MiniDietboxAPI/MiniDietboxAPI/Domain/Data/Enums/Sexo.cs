@@ -1,6 +1,6 @@
-﻿namespace MiniDietboxAPI.Domain.Enums
+﻿namespace MiniDietboxAPI.Domain.Data.Enums
 {
-    public enum  Sexo
+    public enum Sexo
     {
         Masculino = 1,
         Feminino = 2,

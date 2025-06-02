@@ -1,4 +1,4 @@
-﻿using MiniDietboxAPI.Domain.Entities;
+﻿using MiniDietboxAPI.Domain.Data.Entities;
 
 namespace MiniDietboxAPI.Domain.Abstractions.Interfaces
 {

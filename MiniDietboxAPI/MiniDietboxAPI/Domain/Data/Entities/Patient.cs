@@ -1,8 +1,8 @@
-﻿using MiniDietboxAPI.Domain.Enums;
+﻿using MiniDietboxAPI.Domain.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MiniDietboxAPI.Domain.Entities
+namespace MiniDietboxAPI.Domain.Data.Entities
 {
     [Table("Patients")]
     public class Patient : Generics.Generics

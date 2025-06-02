@@ -10,7 +10,7 @@ using MiniDietboxAPI.Domain.AppDbContext;
 
 namespace MiniDietboxAPI.Migrations
 {
-    [DbContext(typeof(AppDbConext))]
+    [DbContext(typeof(AppDbContext))]
     partial class AppDbConextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

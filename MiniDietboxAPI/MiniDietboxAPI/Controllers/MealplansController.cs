@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiniDietboxAPI.Domain.Abstractions.IService;
+using MiniDietboxAPI.Domain.Data.Entities;
+using MiniDietboxAPI.Domain.Data.Results.DTO;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MiniDietboxAPI.Controllers
 {
@@ -15,29 +18,55 @@ namespace MiniDietboxAPI.Controllers
             _mealplanService = mealplanService;
         }
         [HttpGet]
-        public Task<IActionResult> Get()
+        public async  Task<IActionResult> GetAllAsync()
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await _mealplanService.GetAllAsync().ConfigureAwait(false);
+            if (result == null)
+            {
+                return NotFound("No meal plans found.");
+            }
+            return(Ok(result));
         }
-        [HttpGet]
-        public Task<IActionResult> GetById()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await _mealplanService.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound($"Meal plan with ID {id} not found.");
+            }
+            return Ok(result);
         }
         [HttpPost]
-        public Task<IActionResult> Post()
+        public async Task<IActionResult> PostAsync([FromBody] CreateMealplanDto mealplan)
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await _mealplanService.CreateAsync(mealplan).ConfigureAwait(false);
+            if (result == null)
+            {
+                return BadRequest("Failed to create meal plan.");
+            }
+            return Ok(result);
         }
         [HttpPut]
-        public Task<IActionResult> Put()
+        public async Task<IActionResult> PutAsync([FromBody] CreateMealplanDto mealplan)
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await _mealplanService.UpdateAsync(mealplan).ConfigureAwait(false);
+            if (result == null)
+            {
+                return NotFound($"Meal plan with ID {mealplan.Id} not found.");
+            }
+            return Ok(result);
+
         }
-        [HttpDelete]
-        public Task<IActionResult> Delete()
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+           var result = await _mealplanService.DeleteAsync(id).ConfigureAwait(false);
+            if (!result)
+            {
+                return NotFound($"Meal plan with ID {id} not found.");
+            }
+            return Ok();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiniDietboxAPI.Domain.Abstractions.IService;
+using MiniDietboxAPI.Domain.Data.Entities;
 
 namespace MiniDietboxAPI.Controllers
 {
@@ -16,29 +17,66 @@ namespace MiniDietboxAPI.Controllers
         }
 
         [HttpGet]
-        public Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllAsync()
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await _patientService.GetAllAsync().ConfigureAwait(false);
+            if (result == null)
+            {
+                return NotFound("No patients found.");
+            }
+            return Ok(result);
         }
-        [HttpGet]
-        public Task<IActionResult> GetById()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await _patientService.GetByIdAsync(id).ConfigureAwait(false);
+            if (result == null)
+            {
+                return NotFound("patient not found.");
+            }
+            return Ok(result);
         }
-        [HttpPost]
-        public Task<IActionResult> Post()
+        [HttpGet("/{id}/mealplans/today")]
+        public async Task<IActionResult> GetMealansTodayAsync([FromRoute] int id ) 
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await _patientService.GetPatientsWithMealplansAsync(id).ConfigureAwait(false);
+            if (result == null)
+            {
+                return NotFound("No meal plans found for today.");
+            }
+            return Ok(result);
+        }
+
+        [HttpPost("/create")]
+        public async Task<IActionResult> PostAsync([FromBody] Patient patient )
+        {
+            var result = await _patientService.CreateAsync(patient).ConfigureAwait(false);
+            if (result == null)
+            {
+                return BadRequest("Failed to create patient.");
+            }
+            return Ok(result);
         }
         [HttpPut]
-        public Task<IActionResult> Put()
+        public async Task<IActionResult> UpdatePatientAsync([FromBody] Patient patient)
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await _patientService.UpdateAsync(patient).ConfigureAwait(false);
+
+            if (result == null)
+            {
+                return NotFound("Patient not found.");
+            }
+            return Ok(result);
         }
-        [HttpDelete]
-        public Task<IActionResult> Delete()
+        [HttpDelete("{id}")]
+        public async  Task<IActionResult> Delete([FromRoute]int id)
         {
-            return Task.FromResult<IActionResult>(Ok("Pacient endpoint is working!"));
+            var result = await  _patientService.DeleteAsync(id).ConfigureAwait(false);
+            if (!result)
+            {
+                return NotFound("Patient not found.");
+            }
+            return Ok(result);
         }
     }
 }

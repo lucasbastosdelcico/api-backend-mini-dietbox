@@ -11,7 +11,7 @@ using MiniDietboxAPI.Domain.AppDbContext;
 
 namespace MiniDietboxAPI.Migrations
 {
-    [DbContext(typeof(AppDbConext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20250531222703_CriacaoDeBaseDeDados")]
     partial class CriacaoDeBaseDeDados
     {
